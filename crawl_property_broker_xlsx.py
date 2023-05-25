@@ -5,7 +5,6 @@ from datetime import datetime
 import pandas as pd
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.chrome.service import Service as ChromeService
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
@@ -14,10 +13,9 @@ chrome_options = Options()
 chrome_options.add_argument('--disable-site-isolation-trials')
 
 chromedriver_path = "D:/Software/chromedriver_win32/chromedriver.exe"
-service = ChromeService(executable_path=chromedriver_path, chrome_options=chrome_options)
-service.start()
 
-driver = webdriver.Chrome(service=service)
+# driver = webdriver.Chrome(service=service)
+driver = webdriver.Chrome(executable_path=chromedriver_path, options=chrome_options)
 wait = WebDriverWait(driver, 10)
 
 url = "https://nhadat.cafeland.vn/moi-gioi/"
@@ -113,4 +111,3 @@ finally:
     print(f"Save file {file_name} successfully")
 input("Press any key to exit...")
 driver.quit()
-service.stop()
